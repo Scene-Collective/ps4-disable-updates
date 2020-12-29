@@ -3,7 +3,6 @@ Disable Updates
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2c0a761494db4f3b8d038a765354ab4a)](https://www.codacy.com/gh/Scene-Collective/ps4-disable-updates/dashboard)
 
 ## Synopsis
-
 Disables firmware updates by creating dummy directories where updates are be downloaded.
 
 For the payloads built with the most recent firmware supported visit [this repo].
