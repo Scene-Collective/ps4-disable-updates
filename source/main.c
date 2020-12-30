@@ -5,7 +5,9 @@ int _main(struct thread *td) {
 
   initKernel();
   initLibc();
+
   jailbreak();
+
   initSysUtil();
 
   unlink("/update/PS4UPDATE.PUP.net.temp");
