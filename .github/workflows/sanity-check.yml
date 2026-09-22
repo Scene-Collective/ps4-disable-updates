@@ -14,29 +14,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: "Checkout"
-        uses: actions/checkout@v2
-      -
-        name: "Setup Environment"
-        run: |
-          git clone https://github.com/Scene-Collective/ps4-payload-sdk ~/ps4-payload-sdk && cd "$_"
-          chmod +x install.sh
-          sudo ./install.sh
-      -
-        name: "Build Payload"
-        run: |
-          export PS4SDK=/opt/ps4sdk
-          make
-      -
-        name: "Upload Binary Artifact"
-        uses: actions/upload-artifact@v2
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Build with PS4 Payload SDK"
+        uses: Scene-Collective/ps4-payload-sdk@main
         with:
+          app_path: .
+          build_command: make TARGET=ps4-disable-updates.bin MAPFILE=ps4-disable-updates.map
+
+      - name: "Upload Binary Artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: ps4-disable-updates.bin
           path: ./*.bin
           if-no-files-found: error
-      -
-        name: "Upload Map Artifact"
-        uses: actions/upload-artifact@v2
+
+      - name: "Upload Map Artifact"
+        uses: actions/upload-artifact@v4
         with:
+          name: ps4-disable-updates.map
           path: ./*.map
           if-no-files-found: error
